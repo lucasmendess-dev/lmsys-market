@@ -2,6 +2,7 @@ using LMSys.Market.Application.Interfaces;
 using LMSys.Market.Infrastructure.Authentication;
 using LMSys.Market.Infrastructure.Data.Context;
 using LMSys.Market.Infrastructure.Data.Seed;
+using LMSys.Market.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,11 +23,16 @@ public static class DependencyInjection
 
         services.AddDbContext<LMSysMarketDbContext>(
             options =>
-                options.UseNpgsql(connectionString));
+                options.UseNpgsql(
+                    connectionString));
 
         services.AddScoped<
             IPasswordHasher,
             PasswordHasherService>();
+
+        services.AddScoped<
+            IUserRepository,
+            UserRepository>();
 
         services.AddScoped<DatabaseSeeder>();
 

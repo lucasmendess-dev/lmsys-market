@@ -1,12 +1,1381 @@
-﻿<Window x:Class="LMSys.Market.Desktop.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LMSys.Market.Desktop"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+﻿<Window
+    x:Class="LMSys.Market.Desktop.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="LMSys Market"
+    WindowState="Maximized"
+    WindowStartupLocation="CenterScreen"
+    MinWidth="1180"
+    MinHeight="720"
+    Background="{StaticResource BackgroundBrush}"
+    FontFamily="Segoe UI">
+
     <Grid>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="238" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- ================================================= -->
+        <!-- SIDEBAR                                           -->
+        <!-- ================================================= -->
+
+        <Border
+            Grid.Column="0"
+            Background="{StaticResource NavigationBrush}"
+            BorderBrush="{StaticResource BorderBrush}"
+            BorderThickness="0,0,1,0">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="78" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- LOGO -->
+
+                <Border
+                    BorderBrush="{StaticResource DividerBrush}"
+                    BorderThickness="0,0,0,1">
+
+                    <StackPanel
+                        Margin="20,0"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center">
+
+                        <Border
+                            Width="38"
+                            Height="38"
+                            Background="{StaticResource PrimaryBrush}"
+                            CornerRadius="9">
+
+                            <TextBlock
+                                Text="LM"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="White"
+                                FontSize="13"
+                                FontWeight="Bold" />
+
+                        </Border>
+
+                        <StackPanel
+                            Margin="11,0,0,0"
+                            VerticalAlignment="Center">
+
+                            <TextBlock
+                                Text="LMSys"
+                                Foreground="{StaticResource TextPrimaryBrush}"
+                                FontSize="17"
+                                FontWeight="SemiBold" />
+
+                            <TextBlock
+                                Text="M A R K E T"
+                                Foreground="{StaticResource TextMutedBrush}"
+                                FontSize="9"
+                                FontWeight="Bold" />
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </Border>
+
+                <!-- MENU -->
+
+                <ScrollViewer
+                    Grid.Row="1"
+                    VerticalScrollBarVisibility="Auto">
+
+                    <StackPanel
+                        Margin="14,20,14,20">
+
+                        <TextBlock
+                            Margin="10,0,0,8"
+                            Text="MENU"
+                            Foreground="{StaticResource TextMutedBrush}"
+                            FontSize="10"
+                            FontWeight="SemiBold" />
+
+                        <!-- DASHBOARD -->
+
+                        <Button
+                            Style="{StaticResource SidebarItemActiveStyle}">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBlock
+                                    Width="26"
+                                    Text="▦"
+                                    FontSize="17"
+                                    Foreground="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" />
+
+                                <TextBlock
+                                    Text="Visão geral"
+                                    VerticalAlignment="Center" />
+
+                            </StackPanel>
+
+                        </Button>
+
+                        <!-- PDV -->
+
+                        <Button
+                            Style="{StaticResource SidebarItemStyle}"
+                            IsEnabled="False">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBlock
+                                    Width="26"
+                                    Text="▣"
+                                    FontSize="16" />
+
+                                <TextBlock
+                                    Text="PDV"
+                                    VerticalAlignment="Center" />
+
+                            </StackPanel>
+
+                        </Button>
+
+                        <!-- PRODUCTS -->
+
+                        <Button
+                            Style="{StaticResource SidebarItemStyle}"
+                            IsEnabled="False">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBlock
+                                    Width="26"
+                                    Text="□"
+                                    FontSize="17" />
+
+                                <TextBlock
+                                    Text="Produtos"
+                                    VerticalAlignment="Center" />
+
+                            </StackPanel>
+
+                        </Button>
+
+                        <!-- INVENTORY -->
+
+                        <Button
+                            Style="{StaticResource SidebarItemStyle}"
+                            IsEnabled="False">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBlock
+                                    Width="26"
+                                    Text="▤"
+                                    FontSize="16" />
+
+                                <TextBlock
+                                    Text="Estoque"
+                                    VerticalAlignment="Center" />
+
+                            </StackPanel>
+
+                        </Button>
+
+                        <!-- PURCHASES -->
+
+                        <Button
+                            Style="{StaticResource SidebarItemStyle}"
+                            IsEnabled="False">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBlock
+                                    Width="26"
+                                    Text="◇"
+                                    FontSize="16" />
+
+                                <TextBlock
+                                    Text="Compras"
+                                    VerticalAlignment="Center" />
+
+                            </StackPanel>
+
+                        </Button>
+
+                        <Separator
+                            Margin="8,18"
+                            Background="{StaticResource DividerBrush}" />
+
+                        <TextBlock
+                            Margin="10,0,0,8"
+                            Text="GESTÃO"
+                            Foreground="{StaticResource TextMutedBrush}"
+                            FontSize="10"
+                            FontWeight="SemiBold" />
+
+                        <!-- CUSTOMERS -->
+
+                        <Button
+                            Style="{StaticResource SidebarItemStyle}"
+                            IsEnabled="False">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBlock
+                                    Width="26"
+                                    Text="◎"
+                                    FontSize="17" />
+
+                                <TextBlock
+                                    Text="Clientes"
+                                    VerticalAlignment="Center" />
+
+                            </StackPanel>
+
+                        </Button>
+
+                        <!-- FINANCIAL -->
+
+                        <Button
+                            Style="{StaticResource SidebarItemStyle}"
+                            IsEnabled="False">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBlock
+                                    Width="26"
+                                    Text="$"
+                                    FontSize="15" />
+
+                                <TextBlock
+                                    Text="Financeiro"
+                                    VerticalAlignment="Center" />
+
+                            </StackPanel>
+
+                        </Button>
+
+                        <!-- REPORTS -->
+
+                        <Button
+                            Style="{StaticResource SidebarItemStyle}"
+                            IsEnabled="False">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBlock
+                                    Width="26"
+                                    Text="▥"
+                                    FontSize="16" />
+
+                                <TextBlock
+                                    Text="Relatórios"
+                                    VerticalAlignment="Center" />
+
+                            </StackPanel>
+
+                        </Button>
+
+                        <!-- USERS -->
+
+                        <Button
+                            Style="{StaticResource SidebarItemStyle}"
+                            IsEnabled="False">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBlock
+                                    Width="26"
+                                    Text="♙"
+                                    FontSize="16" />
+
+                                <TextBlock
+                                    Text="Usuários"
+                                    VerticalAlignment="Center" />
+
+                            </StackPanel>
+
+                        </Button>
+
+                        <!-- SETTINGS -->
+
+                        <Button
+                            Style="{StaticResource SidebarItemStyle}"
+                            IsEnabled="False">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBlock
+                                    Width="26"
+                                    Text="⚙"
+                                    FontSize="16" />
+
+                                <TextBlock
+                                    Text="Configurações"
+                                    VerticalAlignment="Center" />
+
+                            </StackPanel>
+
+                        </Button>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+
+                <!-- USER AREA -->
+
+                <Border
+                    Grid.Row="2"
+                    Margin="14"
+                    Padding="12"
+                    Background="#F9FAFB"
+                    BorderBrush="{StaticResource BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="10">
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="38" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border
+                            Width="36"
+                            Height="36"
+                            Background="{StaticResource PrimarySoftBrush}"
+                            CornerRadius="18">
+
+                            <TextBlock
+                                Text="U"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource PrimaryBrush}"
+                                FontWeight="Bold" />
+
+                        </Border>
+
+                        <StackPanel
+                            Grid.Column="1"
+                            Margin="9,0,5,0"
+                            VerticalAlignment="Center">
+
+                            <TextBlock
+                                Text="{Binding UserName, Mode=OneWay}"
+                                Foreground="{StaticResource TextPrimaryBrush}"
+                                FontSize="12"
+                                FontWeight="SemiBold"
+                                TextTrimming="CharacterEllipsis" />
+
+                            <TextBlock
+                                Text="{Binding RoleName, Mode=OneWay}"
+                                Foreground="{StaticResource TextMutedBrush}"
+                                FontSize="10"
+                                TextTrimming="CharacterEllipsis" />
+
+                        </StackPanel>
+
+                        <Button
+                            Grid.Column="2"
+                            Width="30"
+                            Height="30"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="{StaticResource TextSecondaryBrush}"
+                            Command="{Binding LogoutCommand}"
+                            ToolTip="Sair"
+                            Content="→" />
+
+                    </Grid>
+
+                </Border>
+
+            </Grid>
+
+        </Border>
+
+        <!-- ================================================= -->
+        <!-- MAIN AREA                                         -->
+        <!-- ================================================= -->
+
+        <Grid Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="78" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- ================================================= -->
+            <!-- TOP BAR                                           -->
+            <!-- ================================================= -->
+
+            <Border
+                Grid.Row="0"
+                Background="White"
+                BorderBrush="{StaticResource BorderBrush}"
+                BorderThickness="0,0,0,1">
+
+                <Grid Margin="28,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- STORE -->
+
+                    <StackPanel
+                        VerticalAlignment="Center">
+
+                        <TextBlock
+                            Text="{Binding StoreName, Mode=OneWay}"
+                            Foreground="{StaticResource TextPrimaryBrush}"
+                            FontSize="14"
+                            FontWeight="SemiBold" />
+
+                        <TextBlock
+                            Margin="0,3,0,0"
+                            Text="Unidade atual"
+                            Foreground="{StaticResource TextMutedBrush}"
+                            FontSize="10" />
+
+                    </StackPanel>
+
+                    <!-- SEARCH -->
+
+                    <Border
+                        Grid.Column="1"
+                        Width="360"
+                        Height="38"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="#F9FAFB"
+                        BorderBrush="{StaticResource BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8">
+
+                        <Grid Margin="12,0">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="24" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Text="⌕"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource TextMutedBrush}"
+                                FontSize="17" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Text="Pesquisar..."
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource TextMutedBrush}"
+                                FontSize="12" />
+
+                            <TextBlock
+                                Grid.Column="2"
+                                Text="Ctrl + K"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource TextMutedBrush}"
+                                FontSize="10" />
+
+                        </Grid>
+
+                    </Border>
+
+                    <!-- PROFILE -->
+
+                    <StackPanel
+                        Grid.Column="2"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center">
+
+                        <Button
+                            Margin="0,0,12,0"
+                            Style="{StaticResource IconButtonStyle}"
+                            IsEnabled="False">
+
+                            <TextBlock
+                                Text="♧"
+                                FontSize="16" />
+
+                        </Button>
+
+                        <Border
+                            Width="36"
+                            Height="36"
+                            Background="{StaticResource PrimaryBrush}"
+                            CornerRadius="18">
+
+                            <TextBlock
+                                Text="U"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="White"
+                                FontWeight="SemiBold" />
+
+                        </Border>
+
+                        <StackPanel
+                            Margin="10,0,0,0"
+                            VerticalAlignment="Center">
+
+                            <TextBlock
+                                Text="{Binding UserName, Mode=OneWay}"
+                                Foreground="{StaticResource TextPrimaryBrush}"
+                                FontSize="12"
+                                FontWeight="SemiBold" />
+
+                            <TextBlock
+                                Text="{Binding RoleName, Mode=OneWay}"
+                                Foreground="{StaticResource TextMutedBrush}"
+                                FontSize="10" />
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </Border>
+
+            <!-- ================================================= -->
+            <!-- CONTENT                                           -->
+            <!-- ================================================= -->
+
+            <ScrollViewer
+                Grid.Row="1"
+                VerticalScrollBarVisibility="Auto">
+
+                <Grid Margin="30">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- PAGE HEADER -->
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel>
+
+                            <TextBlock
+                                Text="Visão geral  ›  Dashboard"
+                                Foreground="{StaticResource TextMutedBrush}"
+                                FontSize="11" />
+
+                            <TextBlock
+                                Margin="0,9,0,0"
+                                Text="Dashboard"
+                                Foreground="{StaticResource TextPrimaryBrush}"
+                                FontSize="26"
+                                FontWeight="SemiBold" />
+
+                            <TextBlock
+                                Margin="0,6,0,0"
+                                Foreground="{StaticResource TextSecondaryBrush}"
+                                FontSize="13">
+
+                                <Run Text="Bem-vindo, " />
+
+                                <Run
+                                    Text="{Binding UserName, Mode=OneWay}" />
+
+                                <Run Text=". Acompanhe o resumo da operação." />
+
+                            </TextBlock>
+
+                        </StackPanel>
+
+                        <StackPanel
+                            Grid.Column="1"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Bottom">
+
+                            <Button
+                                Margin="0,0,10,0"
+                                Style="{StaticResource SecondaryButtonStyle}"
+                                Content="Atualizar" />
+
+                            <Button
+                                Style="{StaticResource PrimaryButtonStyle}"
+                                Content="+  Nova venda"
+                                IsEnabled="False" />
+
+                        </StackPanel>
+
+                    </Grid>
+
+                    <!-- ================================================= -->
+                    <!-- KPI CARDS                                         -->
+                    <!-- ================================================= -->
+
+                    <UniformGrid
+                        Grid.Row="1"
+                        Margin="0,28,0,0"
+                        Columns="4">
+
+                        <!-- CARD 1 -->
+
+                        <Border
+                            Margin="0,0,14,0"
+                            Padding="20"
+                            Style="{StaticResource CardStyle}">
+
+                            <StackPanel>
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock
+                                        Text="Vendas hoje"
+                                        Foreground="{StaticResource TextSecondaryBrush}"
+                                        FontSize="12" />
+
+                                    <Border
+                                        Grid.Column="1"
+                                        Width="32"
+                                        Height="32"
+                                        Background="{StaticResource PrimarySoftBrush}"
+                                        CornerRadius="8">
+
+                                        <TextBlock
+                                            Text="$"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource PrimaryBrush}"
+                                            FontWeight="SemiBold" />
+
+                                    </Border>
+
+                                </Grid>
+
+                                <TextBlock
+                                    Margin="0,18,0,0"
+                                    Text="R$ 0,00"
+                                    Foreground="{StaticResource TextPrimaryBrush}"
+                                    FontSize="25"
+                                    FontWeight="SemiBold" />
+
+                                <TextBlock
+                                    Margin="0,7,0,0"
+                                    Text="Aguardando módulo de vendas"
+                                    Foreground="{StaticResource TextMutedBrush}"
+                                    FontSize="10" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                        <!-- CARD 2 -->
+
+                        <Border
+                            Margin="0,0,14,0"
+                            Padding="20"
+                            Style="{StaticResource CardStyle}">
+
+                            <StackPanel>
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock
+                                        Text="Produtos"
+                                        Foreground="{StaticResource TextSecondaryBrush}"
+                                        FontSize="12" />
+
+                                    <Border
+                                        Grid.Column="1"
+                                        Width="32"
+                                        Height="32"
+                                        Background="{StaticResource InfoSoftBrush}"
+                                        CornerRadius="8">
+
+                                        <TextBlock
+                                            Text="□"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource InfoBrush}"
+                                            FontSize="17" />
+
+                                    </Border>
+
+                                </Grid>
+
+                                <TextBlock
+                                    Margin="0,18,0,0"
+                                    Text="0"
+                                    Foreground="{StaticResource TextPrimaryBrush}"
+                                    FontSize="25"
+                                    FontWeight="SemiBold" />
+
+                                <TextBlock
+                                    Margin="0,7,0,0"
+                                    Text="Produtos cadastrados"
+                                    Foreground="{StaticResource TextMutedBrush}"
+                                    FontSize="10" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                        <!-- CARD 3 -->
+
+                        <Border
+                            Margin="0,0,14,0"
+                            Padding="20"
+                            Style="{StaticResource CardStyle}">
+
+                            <StackPanel>
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock
+                                        Text="Estoque baixo"
+                                        Foreground="{StaticResource TextSecondaryBrush}"
+                                        FontSize="12" />
+
+                                    <Border
+                                        Grid.Column="1"
+                                        Width="32"
+                                        Height="32"
+                                        Background="{StaticResource WarningSoftBrush}"
+                                        CornerRadius="8">
+
+                                        <TextBlock
+                                            Text="!"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource WarningBrush}"
+                                            FontWeight="Bold" />
+
+                                    </Border>
+
+                                </Grid>
+
+                                <TextBlock
+                                    Margin="0,18,0,0"
+                                    Text="0"
+                                    Foreground="{StaticResource TextPrimaryBrush}"
+                                    FontSize="25"
+                                    FontWeight="SemiBold" />
+
+                                <TextBlock
+                                    Margin="0,7,0,0"
+                                    Text="Nenhum alerta disponível"
+                                    Foreground="{StaticResource TextMutedBrush}"
+                                    FontSize="10" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                        <!-- CARD 4 -->
+
+                        <Border
+                            Padding="20"
+                            Style="{StaticResource CardStyle}">
+
+                            <StackPanel>
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock
+                                        Text="Status do sistema"
+                                        Foreground="{StaticResource TextSecondaryBrush}"
+                                        FontSize="12" />
+
+                                    <Border
+                                        Grid.Column="1"
+                                        Width="32"
+                                        Height="32"
+                                        Background="{StaticResource SuccessSoftBrush}"
+                                        CornerRadius="8">
+
+                                        <TextBlock
+                                            Text="✓"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource SuccessBrush}"
+                                            FontWeight="Bold" />
+
+                                    </Border>
+
+                                </Grid>
+
+                                <TextBlock
+                                    Margin="0,18,0,0"
+                                    Text="Online"
+                                    Foreground="{StaticResource TextPrimaryBrush}"
+                                    FontSize="25"
+                                    FontWeight="SemiBold" />
+
+                                <TextBlock
+                                    Margin="0,7,0,0"
+                                    Text="PostgreSQL conectado"
+                                    Foreground="{StaticResource SuccessBrush}"
+                                    FontSize="10" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                    </UniformGrid>
+
+                    <!-- ================================================= -->
+                    <!-- BOTTOM CONTENT                                    -->
+                    <!-- ================================================= -->
+
+                    <Grid
+                        Grid.Row="2"
+                        Margin="0,24,0,0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="18" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- MODULE TABLE -->
+
+                        <Border
+                            Grid.Column="0"
+                            Style="{StaticResource CardStyle}">
+
+                            <Grid>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="68" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <!-- TABLE HEADER -->
+
+                                <Grid
+                                    Margin="22,0"
+                                    VerticalAlignment="Center">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel>
+
+                                        <TextBlock
+                                            Text="Módulos do sistema"
+                                            Foreground="{StaticResource TextPrimaryBrush}"
+                                            FontSize="15"
+                                            FontWeight="SemiBold" />
+
+                                        <TextBlock
+                                            Margin="0,4,0,0"
+                                            Text="Acompanhe a evolução do LMSys Market"
+                                            Foreground="{StaticResource TextMutedBrush}"
+                                            FontSize="10" />
+
+                                    </StackPanel>
+
+                                    <Border
+                                        Grid.Column="1"
+                                        Padding="10,5"
+                                        Background="{StaticResource PrimarySoftBrush}"
+                                        CornerRadius="6">
+
+                                        <TextBlock
+                                            Text="v0.1.0"
+                                            Foreground="{StaticResource PrimaryBrush}"
+                                            FontSize="10"
+                                            FontWeight="SemiBold" />
+
+                                    </Border>
+
+                                </Grid>
+
+                                <!-- COLUMN HEADER -->
+
+                                <Border
+                                    Grid.Row="1"
+                                    Background="#F9FAFB"
+                                    BorderBrush="{StaticResource DividerBrush}"
+                                    BorderThickness="0,1">
+
+                                    <Grid
+                                        Margin="22,0"
+                                        Height="40">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock
+                                            Text="MÓDULO"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource TextMutedBrush}"
+                                            FontSize="9"
+                                            FontWeight="SemiBold" />
+
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Text="VERSÃO"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource TextMutedBrush}"
+                                            FontSize="9"
+                                            FontWeight="SemiBold" />
+
+                                        <TextBlock
+                                            Grid.Column="2"
+                                            Text="STATUS"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource TextMutedBrush}"
+                                            FontSize="9"
+                                            FontWeight="SemiBold" />
+
+                                    </Grid>
+
+                                </Border>
+
+                                <!-- FOUNDATION -->
+
+                                <Grid
+                                    Grid.Row="2"
+                                    Height="55"
+                                    Margin="22,0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel
+                                        VerticalAlignment="Center">
+
+                                        <TextBlock
+                                            Text="Foundation"
+                                            Foreground="{StaticResource TextPrimaryBrush}"
+                                            FontSize="12"
+                                            FontWeight="SemiBold" />
+
+                                        <TextBlock
+                                            Margin="0,2,0,0"
+                                            Text="Núcleo da aplicação"
+                                            Foreground="{StaticResource TextMutedBrush}"
+                                            FontSize="9" />
+
+                                    </StackPanel>
+
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Text="0.1.0"
+                                        VerticalAlignment="Center"
+                                        Foreground="{StaticResource TextSecondaryBrush}"
+                                        FontSize="11" />
+
+                                    <Border
+                                        Grid.Column="2"
+                                        Width="75"
+                                        Height="25"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Background="{StaticResource SuccessSoftBrush}"
+                                        CornerRadius="12">
+
+                                        <TextBlock
+                                            Text="Ativo"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource SuccessBrush}"
+                                            FontSize="9"
+                                            FontWeight="SemiBold" />
+
+                                    </Border>
+
+                                </Grid>
+
+                                <!-- PRODUCTS -->
+
+                                <Border
+                                    Grid.Row="3"
+                                    BorderBrush="{StaticResource DividerBrush}"
+                                    BorderThickness="0,1,0,0">
+
+                                    <Grid
+                                        Height="55"
+                                        Margin="22,0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel VerticalAlignment="Center">
+
+                                            <TextBlock
+                                                Text="Produtos"
+                                                Foreground="{StaticResource TextPrimaryBrush}"
+                                                FontSize="12"
+                                                FontWeight="SemiBold" />
+
+                                            <TextBlock
+                                                Margin="0,2,0,0"
+                                                Text="Cadastro e gerenciamento"
+                                                Foreground="{StaticResource TextMutedBrush}"
+                                                FontSize="9" />
+
+                                        </StackPanel>
+
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Text="0.2.0"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource TextSecondaryBrush}"
+                                            FontSize="11" />
+
+                                        <Border
+                                            Grid.Column="2"
+                                            Width="75"
+                                            Height="25"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Background="#F2F4F7"
+                                            CornerRadius="12">
+
+                                            <TextBlock
+                                                Text="Planejado"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Foreground="{StaticResource TextSecondaryBrush}"
+                                                FontSize="9"
+                                                FontWeight="SemiBold" />
+
+                                        </Border>
+
+                                    </Grid>
+
+                                </Border>
+
+                                <!-- INVENTORY -->
+
+                                <Border
+                                    Grid.Row="4"
+                                    BorderBrush="{StaticResource DividerBrush}"
+                                    BorderThickness="0,1,0,0">
+
+                                    <Grid
+                                        Height="55"
+                                        Margin="22,0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock
+                                            Text="Estoque"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource TextPrimaryBrush}"
+                                            FontSize="12"
+                                            FontWeight="SemiBold" />
+
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Text="0.3.0"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource TextSecondaryBrush}"
+                                            FontSize="11" />
+
+                                        <Border
+                                            Grid.Column="2"
+                                            Width="75"
+                                            Height="25"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Background="#F2F4F7"
+                                            CornerRadius="12">
+
+                                            <TextBlock
+                                                Text="Planejado"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Foreground="{StaticResource TextSecondaryBrush}"
+                                                FontSize="9"
+                                                FontWeight="SemiBold" />
+
+                                        </Border>
+
+                                    </Grid>
+
+                                </Border>
+
+                                <!-- POS -->
+
+                                <Border
+                                    Grid.Row="5"
+                                    BorderBrush="{StaticResource DividerBrush}"
+                                    BorderThickness="0,1,0,0">
+
+                                    <Grid
+                                        Height="55"
+                                        Margin="22,0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock
+                                            Text="PDV"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource TextPrimaryBrush}"
+                                            FontSize="12"
+                                            FontWeight="SemiBold" />
+
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Text="0.5.0"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource TextSecondaryBrush}"
+                                            FontSize="11" />
+
+                                        <Border
+                                            Grid.Column="2"
+                                            Width="75"
+                                            Height="25"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Background="#F2F4F7"
+                                            CornerRadius="12">
+
+                                            <TextBlock
+                                                Text="Planejado"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Foreground="{StaticResource TextSecondaryBrush}"
+                                                FontSize="9"
+                                                FontWeight="SemiBold" />
+
+                                        </Border>
+
+                                    </Grid>
+
+                                </Border>
+
+                            </Grid>
+
+                        </Border>
+
+                        <!-- SYSTEM STATUS -->
+
+                        <Border
+                            Grid.Column="2"
+                            Padding="22"
+                            Style="{StaticResource CardStyle}">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Text="Status do sistema"
+                                    Foreground="{StaticResource TextPrimaryBrush}"
+                                    FontSize="15"
+                                    FontWeight="SemiBold" />
+
+                                <TextBlock
+                                    Margin="0,4,0,22"
+                                    Text="Ambiente atual"
+                                    Foreground="{StaticResource TextMutedBrush}"
+                                    FontSize="10" />
+
+                                <!-- DATABASE -->
+
+                                <Grid Margin="0,0,0,17">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="12" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Ellipse
+                                        Width="8"
+                                        Height="8"
+                                        Fill="{StaticResource SuccessBrush}" />
+
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Margin="8,0,0,0"
+                                        Text="PostgreSQL"
+                                        Foreground="{StaticResource TextSecondaryBrush}"
+                                        FontSize="11" />
+
+                                    <TextBlock
+                                        Grid.Column="2"
+                                        Text="Online"
+                                        Foreground="{StaticResource SuccessBrush}"
+                                        FontSize="10"
+                                        FontWeight="SemiBold" />
+
+                                </Grid>
+
+                                <!-- APP -->
+
+                                <Grid Margin="0,0,0,17">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="12" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Ellipse
+                                        Width="8"
+                                        Height="8"
+                                        Fill="{StaticResource SuccessBrush}" />
+
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Margin="8,0,0,0"
+                                        Text="Aplicação"
+                                        Foreground="{StaticResource TextSecondaryBrush}"
+                                        FontSize="11" />
+
+                                    <TextBlock
+                                        Grid.Column="2"
+                                        Text="Online"
+                                        Foreground="{StaticResource SuccessBrush}"
+                                        FontSize="10"
+                                        FontWeight="SemiBold" />
+
+                                </Grid>
+
+                                <!-- USER -->
+
+                                <Grid Margin="0,0,0,17">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="12" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Ellipse
+                                        Width="8"
+                                        Height="8"
+                                        Fill="{StaticResource SuccessBrush}" />
+
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Margin="8,0,0,0"
+                                        Text="Sessão"
+                                        Foreground="{StaticResource TextSecondaryBrush}"
+                                        FontSize="11" />
+
+                                    <TextBlock
+                                        Grid.Column="2"
+                                        Text="Ativa"
+                                        Foreground="{StaticResource SuccessBrush}"
+                                        FontSize="10"
+                                        FontWeight="SemiBold" />
+
+                                </Grid>
+
+                                <Separator
+                                    Margin="0,8,0,18"
+                                    Background="{StaticResource DividerBrush}" />
+
+                                <TextBlock
+                                    Text="Loja atual"
+                                    Foreground="{StaticResource TextMutedBrush}"
+                                    FontSize="9" />
+
+                                <TextBlock
+                                    Margin="0,4,0,0"
+                                    Text="{Binding StoreName, Mode=OneWay}"
+                                    Foreground="{StaticResource TextPrimaryBrush}"
+                                    FontSize="12"
+                                    FontWeight="SemiBold" />
+
+                                <TextBlock
+                                    Margin="0,18,0,0"
+                                    Text="Usuário"
+                                    Foreground="{StaticResource TextMutedBrush}"
+                                    FontSize="9" />
+
+                                <TextBlock
+                                    Margin="0,4,0,0"
+                                    Text="{Binding UserName, Mode=OneWay}"
+                                    Foreground="{StaticResource TextPrimaryBrush}"
+                                    FontSize="12"
+                                    FontWeight="SemiBold" />
+
+                                <TextBlock
+                                    Margin="0,18,0,0"
+                                    Text="Versão"
+                                    Foreground="{StaticResource TextMutedBrush}"
+                                    FontSize="9" />
+
+                                <TextBlock
+                                    Margin="0,4,0,0"
+                                    Text="LMSys Market 0.1.0"
+                                    Foreground="{StaticResource TextPrimaryBrush}"
+                                    FontSize="12"
+                                    FontWeight="SemiBold" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                    </Grid>
+
+                </Grid>
+
+            </ScrollViewer>
+
+        </Grid>
+
     </Grid>
+
 </Window>
